@@ -59,7 +59,7 @@ pipeline {
 
 
                             // Run Maven on a Unix agent.
-                            sh "mvn clean -Dsurefire.suiteXmlFiles=src/test/resources/APItests.xml \
+                            sh "mvn clean -Dsurefire.suiteXmlFiles=src/test/resources/APItests.xml test"
                             //-P UI -Dbrowser=$BROWSER \
                             //-DbrowserVersion=$VERSION \
                             //-DvideoTestRecord=$VIDEO_TEST_RECORD \
@@ -69,7 +69,7 @@ pipeline {
                             //-Dtoken=$TOKEN_CREDENTIALS \
                             //-DtestRun=$TESTRUN \
                             //-DcodeProject=$CODEPROJECT
-                            test"
+
                     } catch (Exception error)
                     {
                         unstable('Testing failed')
