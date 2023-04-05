@@ -56,22 +56,22 @@ pipeline {
                         //        credentialsId: 'qase_password',
                         //        variable: 'PASSWORD_CREDENTIALS')
                         //])
-                         {
+
 
                             // Run Maven on a Unix agent.
                             sh "mvn clean -Dsurefire.suiteXmlFiles=src/test/resources/APItests.xml \
-                //-P UI -Dbrowser=$BROWSER \
-                //-DbrowserVersion=$VERSION \
-                //-DvideoTestRecord=$VIDEO_TEST_RECORD \
-                //-Dheadless=$HEADLESS \
-                //-Dqase.username=$USERNAME \
-                //-Dqase.password=$PASSWORD_CREDENTIALS \
-                //-Dtoken=$TOKEN_CREDENTIALS \
-                //-DtestRun=$TESTRUN \
-                //-DcodeProject=$CODEPROJECT
-                 test"
-                        }
-                    } catch (Exception error) {
+                            //-P UI -Dbrowser=$BROWSER \
+                            //-DbrowserVersion=$VERSION \
+                            //-DvideoTestRecord=$VIDEO_TEST_RECORD \
+                            //-Dheadless=$HEADLESS \
+                            //-Dqase.username=$USERNAME \
+                            //-Dqase.password=$PASSWORD_CREDENTIALS \
+                            //-Dtoken=$TOKEN_CREDENTIALS \
+                            //-DtestRun=$TESTRUN \
+                            //-DcodeProject=$CODEPROJECT
+                            test"
+                    } catch (Exception error)
+                    {
                         unstable('Testing failed')
                     }
                 }
