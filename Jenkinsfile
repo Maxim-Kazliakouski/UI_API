@@ -59,7 +59,7 @@ pipeline {
 
 
                             // Run Maven on a Unix agent.
-                            sh "mvn clean -Dsurefire.suiteXmlFiles=src/test/resources/APItests.xml test"
+                            bat "mvn clean -Dsurefire.suiteXmlFiles=src/test/resources/APItests.xml test"
                             //-P UI -Dbrowser=$BROWSER \
                             //-DbrowserVersion=$VERSION \
                             //-DvideoTestRecord=$VIDEO_TEST_RECORD \
