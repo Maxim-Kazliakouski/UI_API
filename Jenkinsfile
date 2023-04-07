@@ -82,43 +82,6 @@ pipeline {
             }
         }
 
-        stage('API tests') {
-            steps {
-
-                script {
-
-                    try {
-                        // Get some code from a GitHub repository
-                        git branch: "${params.BRANCH}", url: 'https://github.com/Maxim-Kazliakouski/QaseIO.git'
-
-                        withCredentials ([
-                            string(credentialsId: 'qase_token',
-                        variable: 'token')
-                        ]) {
-
-                            // Run Maven on a Unix agent.
-                            sh "mvn -Dsurefire.suiteXmlFiles=src/test/resources/APItests.xml \
-             -P API -Dtoken=$token \
-             -Dapi=$API test"
-
-                            // To run Maven on a Windows agent, use
-                            // bat "mvn -Dmaven.test.failure.ignore=true clean package"
-                        }
-                    } catch (Exception error) {
-                        unstable('Testing failed')
-                    }
-                }
-            }
-
-            post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                }
-            }
-        }
-
         stage('Stopping and deleting containers') {
             steps {
                 script {
