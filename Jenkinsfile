@@ -25,17 +25,12 @@ pipeline {
         stage('Prepare Selenoid: starting containers') {
             steps {
                 bat "docker pull selenoid/$BROWSER"
-                bat "docker run -d -p 4444:4444 --name chrome selenoid/chrome:latest"
-                //bat "D://UI_API//src//test//resources//ConfigurationManager//cm.exe selenoid start"
+                //bat "docker run -d -p 4444:4444 --name chrome selenoid/$BROWSER:latest"
+                bat "D://UI_API//src//test//resources//ConfigurationManager//cm.exe selenoid start"
                 bat "D://UI_API//src//test//resources//ConfigurationManager//cm.exe selenoid-ui start"
                 bat "D://UI_API//src//test//resources//ConfigurationManager//cm.exe selenoid status"
                 bat "curl http://localhost:4444/status"
-                //sh "docker pull selenoid/$BROWSER"
-                //sh 'chmod +x /Volumes/Work/QaseIO/src/test/resources/ConfigurationManager/cm'
-                //sh '/Volumes/Work/QaseIO/src/test/resources/ConfigurationManager/cm selenoid start'
-                //sh '/Volumes/Work/QaseIO/src/test/resources/ConfigurationManager/cm selenoid-ui start'
-                //sh '/Volumes/Work/QaseIO/src/test/resources/ConfigurationManager/cm selenoid status'
-                //sh 'curl http://localhost:4444/status'
+
             }
         }
         stage('UI tests') {
@@ -129,10 +124,10 @@ pipeline {
         stage('Stopping and deleting containers') {
             steps {
                 script {
-                    sh 'docker stop selenoid'
-                    sh 'docker rm selenoid'
-                    sh 'docker stop selenoid-ui'
-                    sh 'docker rm selenoid-ui'
+                    bat 'docker stop selenoid'
+                    bat 'docker rm selenoid'
+                    bat 'docker stop selenoid-ui'
+                    bat 'docker rm selenoid-ui'
                 }
             }
         }
