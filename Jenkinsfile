@@ -93,18 +93,26 @@ pipeline {
             }
         }
 
-        stage('Generating Allure report') {
-            steps {
-                script {
-                    allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'target/allure-results']]
-                    ])
-                }
-            }
+        stage('Generating Allure report for public nginx') {
+            generateAllure()
+            labelledShell(label: "Move allure results to nginx public directory", script: '''
+            timestamp=$(date +%F_%T)
+            folder=${BRANCH}_allure_${timestamp}
+            mv allure-report ${folder}
+            bat "docker cp C:\ProgramData\Jenkins\.jenkins\workspace\UI_API\allure-report\ nginx-server:/var/www/html"
+            //cp -R ${folder} /var/www/html/
+            echo "http://localhost:5555/${folder}"
+            ''')
         }
     }
+}
+
+def generateAllure() {
+    allure([
+    includeProperties: false,
+    jdk: '',
+    properties: [],
+    reportBuildPolicy: 'ALWAYS',
+    results: [[path: 'target/allure-results']]
+    ])
 }
