@@ -25,7 +25,7 @@ pipeline {
         stage('Prepare Selenoid: starting containers') {
             steps {
                 bat "docker pull selenoid/$BROWSER"
-                //bat "docker run -d -p 4444:4444 --name chrome selenoid/$BROWSER:latest"
+                bat "sleep 2"
                 bat "D://UI_API//src//test//resources//ConfigurationManager//cm.exe selenoid start"
                 bat "sleep 2"
                 bat "D://UI_API//src//test//resources//ConfigurationManager//cm.exe selenoid-ui start"
