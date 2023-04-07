@@ -111,6 +111,7 @@ pipeline {
                     //cp -R ${folder} /var/www/html/
                     echo "http://localhost:5555/${folder}"
                     ''')
+                }
             }
         }
     }
