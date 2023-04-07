@@ -93,8 +93,9 @@ pipeline {
             }
         }
 
-        finally{
-            stage('Generating Allure report for public nginx') {
+        stage('Generating Allure report for public nginx') {
+            steps{
+                script{
                     generateAllure()
                     labelledShell(label: "Move allure results to nginx public directory", script: '''
                     timestamp=$(date +%F_%T)
