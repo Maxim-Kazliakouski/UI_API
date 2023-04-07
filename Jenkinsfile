@@ -108,7 +108,6 @@ pipeline {
             }
         }
     }
-}
 
 def generateAllure() {
     allure([
