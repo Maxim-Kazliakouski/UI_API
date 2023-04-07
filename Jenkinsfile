@@ -31,7 +31,7 @@ pipeline {
                 bat "curl http://localhost:4444/status"
             }
         }
-        stage('UI tests') {
+        stage('API tests') {
 
             steps {
 
@@ -103,14 +103,14 @@ pipeline {
                         reportBuildPolicy: 'ALWAYS',
                         results: [[path: 'target/allure-results']]
                         ])
-                    labelledShell(label: "Move allure results to nginx public directory", script: '''
+                    //labelledShell(label: "Move allure results to nginx public directory", script: '''
                     timestamp=$(date +%F_%T)
                     folder=${BRANCH}_allure_${timestamp}
                     mv allure-report ${folder}
                     bat "docker cp C://ProgramData//Jenkins//.jenkins//workspace//UI_API//allure-report// nginx-server:/var/www/html"
                     //cp -R ${folder} /var/www/html/
                     echo "http://localhost:5555/${folder}"
-                    ''')
+                    //''')
                 }
             }
         }
