@@ -109,7 +109,7 @@ pipeline {
                     //mv allure-report ${folder}
                     bat "docker cp C://ProgramData//Jenkins//.jenkins//workspace//UI_API//allure-report// nginx-server:/var/www/html"
                     //cp -R ${folder} /var/www/html/
-                    echo "http://localhost:5555/${folder}"
+                    //echo "http://localhost:5555/${folder}"
                     //''')
                 }
             }
