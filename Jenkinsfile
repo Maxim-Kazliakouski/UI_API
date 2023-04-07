@@ -94,7 +94,14 @@ pipeline {
         }
 
         stage('Generating Allure report for public nginx') {
-            generateAllure()
+            allure([
+            includeProperties: false,
+            jdk: '',
+            properties: [],
+            reportBuildPolicy: 'ALWAYS',
+            results: [[path: 'target/allure-results']]
+            ])
+            //generateAllure()
             labelledShell(label: "Move allure results to nginx public directory", script: '''
             timestamp=$(date +%F_%T)
             folder=${BRANCH}_allure_${timestamp}
@@ -105,14 +112,4 @@ pipeline {
             ''')
         }
     }
-}
-
-def generateAllure() {
-    allure([
-    includeProperties: false,
-    jdk: '',
-    properties: [],
-    reportBuildPolicy: 'ALWAYS',
-    results: [[path: 'target/allure-results']]
-    ])
 }
