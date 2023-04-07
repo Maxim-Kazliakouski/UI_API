@@ -105,7 +105,7 @@ pipeline {
                         ])
                     //labelledShell(label: "Move allure results to nginx public directory", script: '''
                     //timestamp=$(date + %F_%T)
-                    folder=${BRANCH}_allure_08.04.2023
+                    folder=${BRANCH}_allure
                     //mv allure-report ${folder}
                     bat "docker cp C://ProgramData//Jenkins//.jenkins//workspace//UI_API//allure-report// nginx-server:/var/www/html"
                     //cp -R ${folder} /var/www/html/
