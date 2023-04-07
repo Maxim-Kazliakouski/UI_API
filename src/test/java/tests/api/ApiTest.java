@@ -1,10 +1,12 @@
 package tests.api;
 
+import io.qameta.allure.Description;
 import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 
 public class ApiTest {
     @Test
+    @Description("Api test")
     public void getBookings() {
         RestAssured
                 .given()
