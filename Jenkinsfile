@@ -24,10 +24,18 @@ pipeline {
     stages {
         stage('Prepare Selenoid: starting containers') {
             steps {
-                bat "D://UI_API//src//test//resources//ConfigurationManager//cm.exe selenoid start"
+                bat "docker pull selenoid/$BROWSER"
+                bat "docker run -p 4444:4444 --name chrome selenoid/chrome:latest"
+                //bat "D://UI_API//src//test//resources//ConfigurationManager//cm.exe selenoid start"
                 bat "D://UI_API//src//test//resources//ConfigurationManager//cm.exe selenoid-ui start"
                 bat "D://UI_API//src//test//resources//ConfigurationManager//cm.exe selenoid status"
                 bat "curl http://localhost:4444/status"
+                //sh "docker pull selenoid/$BROWSER"
+                //sh 'chmod +x /Volumes/Work/QaseIO/src/test/resources/ConfigurationManager/cm'
+                //sh '/Volumes/Work/QaseIO/src/test/resources/ConfigurationManager/cm selenoid start'
+                //sh '/Volumes/Work/QaseIO/src/test/resources/ConfigurationManager/cm selenoid-ui start'
+                //sh '/Volumes/Work/QaseIO/src/test/resources/ConfigurationManager/cm selenoid status'
+                //sh 'curl http://localhost:4444/status'
             }
         }
         stage('UI tests') {
