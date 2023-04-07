@@ -108,6 +108,7 @@ pipeline {
             }
         }
     }
+}
 
 def generateAllure() {
     allure([
@@ -116,5 +117,4 @@ def generateAllure() {
     properties: [],
     reportBuildPolicy: 'ALWAYS',
     results: [[path: 'target/allure-results']]
-    ])
-}
+    ])}
