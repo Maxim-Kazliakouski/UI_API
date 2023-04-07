@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.example</groupId>
     <artifactId>UI_API</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -35,8 +34,7 @@
                 <configuration>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaverVersion}/aspectjweaver-${aspectjweaverVersion}.jar"
-                        -Xmx256m
-                        -Dcucumber.options="--plugin io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+                        -Xmx1024m
                     </argLine>
                     <suiteXmlFiles>
                         <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
@@ -150,11 +148,11 @@
             <version>${aspectjweaverVersion}</version>
         </dependency>
         <!--allure for testng-->
-        <!--        <dependency>-->
-        <!--            <groupId>io.qameta.allure</groupId>-->
-        <!--            <artifactId>allure-testng</artifactId>-->
-        <!--            <version>2.19.0</version>-->
-        <!--        </dependency>-->
+                <dependency>
+                    <groupId>io.qameta.allure</groupId>
+                    <artifactId>allure-testng</artifactId>
+                    <version>2.19.0</version>
+                </dependency>
         <!--        selenide-->
         <dependency>
             <groupId>com.codeborne</groupId>
