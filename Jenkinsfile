@@ -107,7 +107,7 @@ pipeline {
                     //timestamp=$(date + %F_%T)
                     //folder=${BRANCH}_allure
                     //mv allure-report ${folder}
-                    bat "docker cp C://ProgramData//Jenkins//.jenkins//workspace//UI_API//allure-report// nginx-server:/var/www/html/allure-report-${BRANCH}"
+                    bat "docker cp C://ProgramData//Jenkins//.jenkins//workspace//UI_API//allure-report// nginx-server:/var/www/html/allure-report-${BRANCH}-%date%"
 
                     //cp -R ${folder} /var/www/html/
                     //echo "http://localhost:5555/${folder}"
