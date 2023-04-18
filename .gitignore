@@ -30,3 +30,4 @@ target/
 *.exe
 ajcore.*.txt
 .allure/
+.gradle/
