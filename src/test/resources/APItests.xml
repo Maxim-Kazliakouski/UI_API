@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Api Qase Tests" parallel="false" thread-count="2">
+<suite name="Api Tests Gradle" parallel="false" thread-count="2">
+    <listeners>
+        <listener class-name='tests.base.AnnotationTransformer'/>
+        <listener class-name="tests.base.TestListener"/>
+    </listeners>
     <test name="API_tests">
         <classes>
             <class name="tests.api.ApiTest"/>
